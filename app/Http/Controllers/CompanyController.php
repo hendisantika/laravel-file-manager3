@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use Illuminate\Support\Facades\View;
 
 class CompanyController extends Controller
@@ -29,5 +30,12 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         return view('companies.edit', compact('company'));
+    }
+
+    public function update(UpdateCompanyRequest $request, Company $company): RedirectResponse
+    {
+        $company->update($request->validated());
+
+        return to_route('companies.index');
     }
 }
