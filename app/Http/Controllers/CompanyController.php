@@ -25,4 +25,9 @@ class CompanyController extends Controller
 
         return to_route('companies.index');
     }
+
+    public function edit(Company $company)
+    {
+        return view('companies.edit', compact('company'));
+    }
 }
