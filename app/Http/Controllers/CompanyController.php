@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompanyRequest;
 use Illuminate\Support\Facades\View;
 
 class CompanyController extends Controller
@@ -16,5 +17,12 @@ class CompanyController extends Controller
     public function create(): View
     {
         return view('companies.create');
+    }
+
+    public function store(StoreCompanyRequest $request): RedirectResponse
+    {
+        Company::create($request->validated());
+
+        return to_route('companies.index');
     }
 }
